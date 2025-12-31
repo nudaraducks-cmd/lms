@@ -23,7 +23,6 @@
         .tab-content { display: none; }
         .tab-content.active { display: block; }
 
-        /* Sub-tab styling */
         .sub-tab-content { display: none; }
         .sub-tab-content.active { display: block; }
         
@@ -198,12 +197,12 @@
                     </div>
 
                     <!-- Sub Tab: Live -->
-                    <div id="sub-tab-live" class="sub-tab-content active animate-in fade-in duration-300">
+                    <div id="sub-tab-live" class="sub-tab-content active">
                         <div class="max-w-xl mx-auto py-10">
                             <div class="bg-white p-8 rounded-2xl shadow-sm border border-red-50 relative overflow-hidden">
                                 <div class="flex items-center gap-3 mb-8">
                                     <div class="h-12 w-12 bg-red-100 text-red-600 rounded-xl flex items-center justify-center">
-                                        <i class="fa-solid fa-satellite-dish text-xl animate-pulse"></i>
+                                        <i class="fa-solid fa-satellite-dish text-xl"></i>
                                     </div>
                                     <div>
                                         <h3 class="text-lg font-bold">Live Stream & Schedule</h3>
@@ -226,19 +225,19 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <label class="block text-xs font-bold text-gray-400 uppercase mb-1 tracking-tight">Zoom / Google Meet URL</label>
+                                        <label class="block text-xs font-bold text-gray-400 uppercase mb-1 tracking-tight">Meeting URL</label>
                                         <input type="url" id="live-url" required placeholder="https://zoom.us/j/..." class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none text-sm transition-all bg-gray-50 focus:bg-white">
                                     </div>
                                     <div>
-                                        <label class="block text-xs font-bold text-gray-400 uppercase mb-1 tracking-tight">Current Status Message</label>
+                                        <label class="block text-xs font-bold text-gray-400 uppercase mb-1 tracking-tight">Status Message</label>
                                         <input type="text" id="live-status" placeholder="e.g. Meeting will start soon..." class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none text-sm transition-all bg-gray-50 focus:bg-white">
                                     </div>
                                     
                                     <div class="grid grid-cols-2 gap-4 pt-4">
-                                        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl font-bold text-sm transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2">
+                                        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl font-bold text-sm transition-all shadow-lg flex items-center justify-center gap-2">
                                             <i class="fa-solid fa-calendar-check"></i> Save Schedule
                                         </button>
-                                        <a id="start-zoom-btn" href="#" target="_blank" class="w-full bg-gray-900 hover:bg-black text-white py-3 rounded-xl font-bold text-sm transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2 opacity-50 cursor-not-allowed">
+                                        <a id="start-zoom-btn" href="#" target="_blank" class="w-full bg-gray-900 hover:bg-black text-white py-3 rounded-xl font-bold text-sm transition-all shadow-lg flex items-center justify-center gap-2 opacity-50 pointer-events-none">
                                             <i class="fa-solid fa-video"></i> Start Meeting
                                         </a>
                                     </div>
@@ -249,7 +248,7 @@
                     </div>
 
                     <!-- Sub Tab: Recordings -->
-                    <div id="sub-tab-recordings" class="sub-tab-content animate-in fade-in duration-300 space-y-8">
+                    <div id="sub-tab-recordings" class="sub-tab-content space-y-8">
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                             <div class="md:col-span-1">
                                 <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
@@ -281,7 +280,7 @@
                                         <h3 class="font-bold text-gray-700">Recent Class Recordings</h3>
                                     </div>
                                     <div id="recordings-list" class="divide-y divide-gray-100 max-h-[500px] overflow-y-auto">
-                                         <!-- Dynamically Filled -->
+                                        <!-- Dynamically Filled -->
                                     </div>
                                 </div>
                             </div>
@@ -293,6 +292,7 @@
                 <div id="students" class="tab-content space-y-8">
                     <h2 class="text-2xl font-bold text-gray-900">Student Management</h2>
                     <div class="bg-white p-12 border border-gray-200 rounded-xl text-center">
+                        <i class="fa-solid fa-user-clock text-4xl text-gray-300 mb-4 block"></i>
                         <p class="text-gray-500">Student database module will be available in the next update.</p>
                     </div>
                 </div>
@@ -311,7 +311,7 @@
 
     <!-- Modals -->
     <div id="add-course-modal" class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center opacity-0 transition-opacity duration-300">
-        <div class="bg-white rounded-xl shadow-2xl w-full max-w-lg mx-4 transform scale-95 transition-transform duration-300" id="modal-content">
+        <div class="bg-white rounded-xl shadow-2xl w-full max-w-lg mx-4 transform scale-95 transition-transform duration-300">
             <div class="flex justify-between items-center p-6 border-b border-gray-100">
                 <h3 class="text-lg font-bold text-gray-900">Create New Study Pack</h3>
                 <button onclick="toggleModal('add-course-modal')" class="text-gray-400 hover:text-gray-600 transition-colors">
@@ -333,9 +333,8 @@
                 </div>
                 <div class="pt-4 flex justify-end gap-3">
                     <button type="button" onclick="toggleModal('add-course-modal')" class="px-4 py-2 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg font-medium">Cancel</button>
-                    <button type="submit" id="submit-btn" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium shadow-sm flex items-center gap-2">
-                        <span>Create Pack</span>
-                        <div id="btn-loader" class="hidden w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                    <button type="submit" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium shadow-sm flex items-center gap-2">
+                        Create Pack
                     </button>
                 </div>
             </form>
@@ -351,10 +350,10 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAuth, signInAnonymously, onAuthStateChanged, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, collection, addDoc, onSnapshot, deleteDoc, doc, serverTimestamp, query, setDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { getFirestore, collection, addDoc, onSnapshot, deleteDoc, doc, serverTimestamp, query, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
         const firebaseConfig = JSON.parse(__firebase_config);
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app';
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-lms-app';
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const db = getFirestore(app);
@@ -362,35 +361,6 @@
         let currentUser = null;
         let activePackId = null;
         let lessonsUnsubscribe = null;
-
-        // --- TAB SWITCHING ---
-        window.switchTab = (tabId) => {
-            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.classList.remove('active');
-            });
-            
-            document.getElementById(tabId).classList.add('active');
-            const activeBtn = Array.from(document.querySelectorAll('.nav-link')).find(b => b.getAttribute('onclick').includes(tabId));
-            if(activeBtn) activeBtn.classList.add('active');
-
-            if(tabId === 'study-packs') backToPacks();
-            if(tabId === 'online-classes') loadOnlineClassData();
-        };
-
-        // --- SUB-TAB SWITCHING (Online Classes) ---
-        window.switchSubTab = (subId) => {
-            document.querySelectorAll('.sub-tab-content').forEach(c => c.classList.remove('active'));
-            document.querySelectorAll('.sub-nav-btn').forEach(b => {
-                b.classList.remove('active', 'text-gray-900');
-                b.classList.add('text-gray-400');
-            });
-
-            document.getElementById(`sub-tab-${subId}`).classList.add('active');
-            const activeBtn = document.getElementById(`sub-nav-${subId}`);
-            activeBtn.classList.add('active', 'text-gray-900');
-            activeBtn.classList.remove('text-gray-400');
-        };
 
         // --- AUTH ---
         const initAuth = async () => {
@@ -407,46 +377,89 @@
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 currentUser = user;
-                document.getElementById('user-status').textContent = `Admin ID: ${user.uid.slice(0, 6)}`;
+                document.getElementById('user-status').textContent = `Admin: ${user.uid.slice(0, 6)}`;
                 loadCourses();
-                loadOnlineClassData(); 
+                loadOnlineClassConfig();
+                loadRecordings();
             }
         });
 
-        // --- STUDY PACKS LOGIC ---
+        // --- NAVIGATION ---
+        window.switchTab = (tabId) => {
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+            
+            document.getElementById(tabId).classList.add('active');
+            const navBtn = Array.from(document.querySelectorAll('.nav-link')).find(b => b.textContent.toLowerCase().includes(tabId.split('-')[0]));
+            if(navBtn) navBtn.classList.add('active');
+        };
+
+        window.switchSubTab = (subId) => {
+            document.querySelectorAll('.sub-tab-content').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.sub-nav-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(`sub-tab-${subId}`).classList.add('active');
+            document.getElementById(`sub-nav-${subId}`).classList.add('active');
+        };
+
+        // --- MODALS ---
+        window.toggleModal = (id) => {
+            const modal = document.getElementById(id);
+            const content = modal.querySelector('div');
+            if(modal.classList.contains('hidden')) {
+                modal.classList.remove('hidden');
+                setTimeout(() => {
+                    modal.classList.remove('opacity-0');
+                    content.classList.remove('scale-95');
+                }, 10);
+            } else {
+                modal.classList.add('opacity-0');
+                content.classList.add('scale-95');
+                setTimeout(() => modal.classList.add('hidden'), 300);
+            }
+        };
+
+        // --- TOAST ---
+        window.showToast = (msg, type = "success") => {
+            const toast = document.getElementById('toast');
+            const icon = document.getElementById('toast-icon');
+            toast.classList.remove('border-green-500', 'border-red-500');
+            toast.classList.add(type === 'success' ? 'border-green-500' : 'border-red-500');
+            icon.className = type === 'success' ? 'fa-solid fa-check-circle text-green-500 text-xl' : 'fa-solid fa-triangle-exclamation text-red-500 text-xl';
+            document.getElementById('toast-message').textContent = msg;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => toast.classList.add('translate-y-20', 'opacity-0'), 3000);
+        };
+
+        // --- STUDY PACKS ---
         const loadCourses = () => {
-            const courseGrid = document.getElementById('course-grid');
-            const totalCount = document.getElementById('total-courses-count');
             const q = query(collection(db, 'artifacts', appId, 'public', 'data', 'courses'));
-
             onSnapshot(q, (snapshot) => {
-                const courses = [];
-                snapshot.forEach(doc => courses.push({ id: doc.id, ...doc.data() }));
-                courses.sort((a, b) => (b.createdAt?.seconds || 0) - (a.createdAt?.seconds || 0));
-                totalCount.textContent = courses.length;
-
-                if (courses.length === 0) {
-                    courseGrid.innerHTML = `<div class="col-span-full py-16 text-center border-2 border-dashed rounded-xl bg-gray-50">No packs found.</div>`;
-                    return;
-                }
-
-                courseGrid.innerHTML = courses.map(course => `
-                    <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden group hover:shadow-md transition-all cursor-pointer" onclick="openPackDetails('${course.id}', '${course.title.replace(/'/g, "\\'")}')">
-                        <div class="relative h-44 overflow-hidden bg-gray-100">
-                            <img src="${course.image || 'https://placehold.co/600x400/eff6ff/3b82f6?text=Study+Pack'}" class="w-full h-full object-cover group-hover:scale-110 transition-all duration-500">
-                            <button onclick="event.stopPropagation(); deleteCourse('${course.id}')" class="absolute top-2 right-2 opacity-0 group-hover:opacity-100 bg-white text-red-500 p-2 rounded shadow hover:bg-red-50"><i class="fa-solid fa-trash-can"></i></button>
-                        </div>
-                        <div class="p-4">
-                            <h3 class="font-bold text-gray-900 truncate">${course.title}</h3>
-                            <p class="text-gray-500 text-xs mt-1 line-clamp-2 h-8">${course.description}</p>
-                            <div class="mt-4 pt-4 border-t flex justify-between items-center text-blue-600 text-xs font-bold">
-                                <span>ID: ${course.id.slice(0, 6)}</span>
-                                <span>Lessons &rarr;</span>
+                const grid = document.getElementById('course-grid');
+                const countEl = document.getElementById('total-courses-count');
+                let html = "";
+                let count = 0;
+                
+                snapshot.forEach(doc => {
+                    const data = doc.data();
+                    count++;
+                    html += `
+                        <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden group cursor-pointer" onclick="openPackDetails('${doc.id}', '${data.title}')">
+                            <div class="h-40 bg-gray-100 relative">
+                                <img src="${data.image || 'https://placehold.co/400x200?text=Pack'}" class="w-full h-full object-cover">
+                                <button onclick="event.stopPropagation(); deletePack('${doc.id}')" class="absolute top-2 right-2 p-2 bg-white/90 rounded-lg text-red-500 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </div>
+                            <div class="p-4">
+                                <h4 class="font-bold truncate">${data.title}</h4>
+                                <p class="text-xs text-gray-500 line-clamp-2 mt-1">${data.description}</p>
                             </div>
                         </div>
-                    </div>
-                `).join('');
-            });
+                    `;
+                });
+                countEl.textContent = count;
+                grid.innerHTML = html || '<div class="col-span-full py-10 text-center text-gray-400">No packs found. Click add to create one.</div>';
+            }, (err) => console.error(err));
         };
 
         window.openPackDetails = (id, title) => {
@@ -458,48 +471,69 @@
         };
 
         window.backToPacks = () => {
+            activePackId = null;
             if(lessonsUnsubscribe) lessonsUnsubscribe();
             document.getElementById('packs-list-view').classList.remove('hidden');
             document.getElementById('lessons-management-view').classList.add('hidden');
         };
 
         const loadLessons = (id) => {
-            const list = document.getElementById('lessons-list');
             const q = query(collection(db, 'artifacts', appId, 'public', 'data', 'courses', id, 'lessons'));
             lessonsUnsubscribe = onSnapshot(q, (snapshot) => {
-                const lessons = [];
-                snapshot.forEach(doc => lessons.push({ id: doc.id, ...doc.data() }));
-                if (lessons.length === 0) {
-                    list.innerHTML = `<tr><td colspan="3" class="px-6 py-10 text-center text-gray-400">No lessons.</td></tr>`;
-                    return;
-                }
-                list.innerHTML = lessons.map(l => `
-                    <tr class="hover:bg-gray-50 transition-colors">
-                        <td class="px-6 py-4 text-sm font-semibold">${l.name}</td>
-                        <td class="px-6 py-4 text-xs text-blue-500 truncate max-w-xs"><a href="${l.url}" target="_blank">${l.url}</a></td>
-                        <td class="px-6 py-4 text-right"><button onclick="deleteLesson('${l.id}')" class="text-gray-300 hover:text-red-500 transition-colors"><i class="fa-solid fa-trash-can"></i></button></td>
-                    </tr>
-                `).join('');
+                const list = document.getElementById('lessons-list');
+                let html = "";
+                snapshot.forEach(doc => {
+                    const l = doc.data();
+                    html += `
+                        <tr class="hover:bg-gray-50">
+                            <td class="px-6 py-4 text-sm font-medium">${l.name}</td>
+                            <td class="px-6 py-4 text-xs text-blue-500 font-mono truncate max-w-[200px]"><a href="${l.url}" target="_blank">${l.url}</a></td>
+                            <td class="px-6 py-4 text-right">
+                                <button onclick="deleteLesson('${id}', '${doc.id}')" class="text-gray-300 hover:text-red-500"><i class="fa-solid fa-trash"></i></button>
+                            </td>
+                        </tr>
+                    `;
+                });
+                list.innerHTML = html || '<tr><td colspan="3" class="px-6 py-10 text-center text-gray-400">No lessons in this pack.</td></tr>';
             });
         };
 
+        // --- SUBMISSIONS ---
+        document.getElementById('add-course-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            if(!currentUser) return;
+            const title = document.getElementById('course-title').value;
+            const description = document.getElementById('course-desc').value;
+            const image = document.getElementById('course-img').value;
+            
+            try {
+                await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'courses'), {
+                    title, description, image, createdAt: serverTimestamp()
+                });
+                toggleModal('add-course-modal');
+                e.target.reset();
+                showToast("Study Pack created!");
+            } catch (err) { showToast("Failed to create pack", "error"); }
+        });
+
         document.getElementById('add-lesson-form').addEventListener('submit', async (e) => {
             e.preventDefault();
-            if(!activePackId) return;
+            if(!activePackId || !currentUser) return;
             const name = document.getElementById('lesson-name').value;
             const url = document.getElementById('lesson-url').value;
             try {
-                await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'courses', activePackId, 'lessons'), { name, url, createdAt: serverTimestamp() });
+                await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'courses', activePackId, 'lessons'), {
+                    name, url, createdAt: serverTimestamp()
+                });
                 e.target.reset();
                 showToast("Lesson added!");
-            } catch (err) { showToast("Error", "error"); }
+            } catch (err) { showToast("Error adding lesson", "error"); }
         });
 
-        // --- ONLINE CLASS LOGIC ---
-        const loadOnlineClassData = () => {
+        // --- ONLINE CLASS CONFIG ---
+        const loadOnlineClassConfig = () => {
             onSnapshot(doc(db, 'artifacts', appId, 'public', 'data', 'online_config', 'live'), (snapshot) => {
-                const zoomBtn = document.getElementById('start-zoom-btn');
-                if(snapshot.exists()){
+                if(snapshot.exists()) {
                     const data = snapshot.data();
                     document.getElementById('live-title').value = data.title || "";
                     document.getElementById('live-date').value = data.date || "";
@@ -507,133 +541,93 @@
                     document.getElementById('live-url').value = data.url || "";
                     document.getElementById('live-status').value = data.status || "";
                     
+                    const btn = document.getElementById('start-zoom-btn');
                     if(data.url) {
-                        zoomBtn.href = data.url;
-                        zoomBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                        btn.href = data.url;
+                        btn.classList.remove('opacity-50', 'pointer-events-none');
                     } else {
-                        zoomBtn.href = "#";
-                        zoomBtn.classList.add('opacity-50', 'cursor-not-allowed');
+                        btn.classList.add('opacity-50', 'pointer-events-none');
                     }
                 }
-            });
-
-            const q = query(collection(db, 'artifacts', appId, 'public', 'data', 'online_recordings'));
-            onSnapshot(q, (snapshot) => {
-                const recordings = [];
-                snapshot.forEach(doc => recordings.push({ id: doc.id, ...doc.data() }));
-                recordings.sort((a,b) => (b.createdAt?.seconds || 0) - (a.createdAt?.seconds || 0));
-                
-                const list = document.getElementById('recordings-list');
-                if(recordings.length === 0) {
-                    list.innerHTML = `<div class="p-10 text-center text-gray-400">No recordings added yet.</div>`;
-                    return;
-                }
-                list.innerHTML = recordings.map(r => `
-                    <div class="flex items-center justify-between p-4 hover:bg-gray-50 transition-colors group">
-                        <div class="flex items-center gap-4">
-                            <div class="h-10 w-10 bg-blue-50 text-blue-600 rounded-lg flex items-center justify-center">
-                                <i class="fa-brands fa-youtube"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-sm font-bold text-gray-800">${r.title}</h4>
-                                <p class="text-[10px] text-gray-400">${r.createdAt ? new Date(r.createdAt.seconds * 1000).toLocaleDateString() : 'Just now'}</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <a href="${r.url}" target="_blank" class="px-3 py-1 bg-white border border-gray-200 text-gray-600 rounded text-xs hover:bg-gray-50 transition-colors">View</a>
-                            <button onclick="deleteRecording('${r.id}')" class="text-gray-300 hover:text-red-500 p-2 transition-colors"><i class="fa-solid fa-trash-can"></i></button>
-                        </div>
-                    </div>
-                `).join('');
             });
         };
 
         document.getElementById('live-class-form').addEventListener('submit', async (e) => {
             e.preventDefault();
-            const title = document.getElementById('live-title').value;
-            const date = document.getElementById('live-date').value;
-            const time = document.getElementById('live-time').value;
-            const url = document.getElementById('live-url').value;
-            const status = document.getElementById('live-status').value;
+            if(!currentUser) return;
+            const payload = {
+                title: document.getElementById('live-title').value,
+                date: document.getElementById('live-date').value,
+                time: document.getElementById('live-time').value,
+                url: document.getElementById('live-url').value,
+                status: document.getElementById('live-status').value,
+                updatedAt: serverTimestamp()
+            };
             try {
-                await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'online_config', 'live'), {
-                    title, date, time, url, status, updatedAt: serverTimestamp()
-                });
-                showToast("Schedule updated successfully!");
-            } catch (err) { showToast("Update failed", "error"); }
+                await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'online_config', 'live'), payload);
+                showToast("Meeting schedule updated!");
+            } catch (err) { showToast("Failed to save", "error"); }
         });
+
+        // --- RECORDINGS ---
+        const loadRecordings = () => {
+            onSnapshot(query(collection(db, 'artifacts', appId, 'public', 'data', 'recordings')), (snapshot) => {
+                const list = document.getElementById('recordings-list');
+                let html = "";
+                snapshot.forEach(doc => {
+                    const r = doc.data();
+                    html += `
+                        <div class="p-4 flex items-center justify-between hover:bg-gray-50">
+                            <div class="flex items-center gap-3">
+                                <div class="h-10 w-10 bg-red-50 text-red-500 rounded flex items-center justify-center">
+                                    <i class="fa-brands fa-youtube text-xl"></i>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-sm text-gray-900">${r.title}</p>
+                                    <p class="text-xs text-gray-400 font-mono truncate max-w-[150px]">${r.url}</p>
+                                </div>
+                            </div>
+                            <button onclick="deleteRecording('${doc.id}')" class="text-gray-300 hover:text-red-500 p-2">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </div>
+                    `;
+                });
+                list.innerHTML = html || '<div class="p-10 text-center text-gray-400 text-sm">No recordings found.</div>';
+            });
+        };
 
         document.getElementById('add-recording-form').addEventListener('submit', async (e) => {
             e.preventDefault();
+            if(!currentUser) return;
             const title = document.getElementById('recording-title').value;
             const url = document.getElementById('recording-url').value;
             try {
-                await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'online_recordings'), {
+                await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'recordings'), {
                     title, url, createdAt: serverTimestamp()
                 });
                 e.target.reset();
-                showToast("Recording saved!");
-            } catch (err) { showToast("Save failed", "error"); }
+                showToast("Recording link saved!");
+            } catch (err) { showToast("Error saving link", "error"); }
         });
+
+        // --- GLOBAL DELETE FUNCTIONS ---
+        window.deletePack = async (id) => {
+            if(!confirm("Delete this pack and all its lessons?")) return;
+            try { await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'courses', id)); showToast("Pack deleted"); }
+            catch (err) { showToast("Error", "error"); }
+        };
+
+        window.deleteLesson = async (packId, lessonId) => {
+            try { await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'courses', packId, 'lessons', lessonId)); }
+            catch (err) { showToast("Error", "error"); }
+        };
 
         window.deleteRecording = async (id) => {
-            if(confirm("Remove this recording?")) {
-                await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'online_recordings', id));
-                showToast("Deleted");
-            }
+            try { await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'recordings', id)); }
+            catch (err) { showToast("Error", "error"); }
         };
 
-        // --- COMMON UTILS ---
-        document.getElementById('add-course-form').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const btn = document.getElementById('submit-btn');
-            btn.disabled = true;
-            try {
-                await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'courses'), {
-                    title: document.getElementById('course-title').value,
-                    description: document.getElementById('course-desc').value,
-                    image: document.getElementById('course-img').value || "",
-                    createdAt: serverTimestamp(),
-                    createdBy: currentUser?.uid
-                });
-                toggleModal('add-course-modal');
-                e.target.reset();
-                showToast("Pack created!");
-            } catch (err) { showToast("Failed", "error"); }
-            finally { btn.disabled = false; }
-        });
-
-        window.deleteCourse = async (id) => {
-            if(confirm("Delete this study pack? This will not delete the lessons inside.")) {
-                await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'courses', id));
-                showToast("Deleted pack");
-            }
-        };
-
-        window.deleteLesson = async (lid) => {
-            if(confirm("Delete this lesson?")) {
-                await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'courses', activePackId, 'lessons', lid));
-                showToast("Deleted lesson");
-            }
-        };
-
-        window.toggleModal = (id) => {
-            const m = document.getElementById(id);
-            if(m.classList.contains('hidden')){
-                m.classList.remove('hidden');
-                setTimeout(() => m.classList.remove('opacity-0'), 10);
-            } else {
-                m.classList.add('opacity-0');
-                setTimeout(() => m.classList.add('hidden'), 3000);
-            }
-        };
-
-        window.showToast = (msg, type="success") => {
-            const t = document.getElementById('toast');
-            document.getElementById('toast-message').textContent = msg;
-            t.classList.remove('translate-y-20', 'opacity-0');
-            setTimeout(() => t.classList.add('translate-y-20', 'opacity-0'), 3000);
-        };
     </script>
 </body>
 </html>
